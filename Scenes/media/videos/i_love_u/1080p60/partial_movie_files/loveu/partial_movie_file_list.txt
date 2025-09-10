@@ -1,8 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3529212410_1935672074_223132457.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_1443213031_3983077388.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_1502939680_1158316835.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_141982251_3002380340.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_4217992463_106737851.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_3730433135_3513469861.mp4'
-file 'file:/home/reen-lo/Projects/Manim-Project/Scenes/media/videos/i_love_u/1080p60/partial_movie_files/loveu/3040924799_2844360058_2568011410.mp4'
