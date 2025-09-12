@@ -28,3 +28,13 @@ class Equation(Scene):
         self.play(TransformFromCopy(t1[1], t2[1]))
 
         self.wait(2)
+
+class linux(Scene):
+    def construct(self):
+        a = SVGMobject("images/ubuntu")
+        t = Text("Ubuntu").next_to(a, DOWN)
+
+        self.play(Write(a))
+        self.play(Write(t))
+        self.wait(3)
+
