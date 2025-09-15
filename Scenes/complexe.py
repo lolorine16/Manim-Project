@@ -70,7 +70,7 @@ class complexe(Scene):
             x_range=[-3, 3, 1], #[min, max, echelle] pour l'axe des abscisses 
             y_range=[-3, 3, 1], #pareil, pour l'axes des ordonnees
             x_length=4, #taille des axes
-            x_length=4,
+            y_length=4,
             axis_config={"include_numbers": False}, #ne pas montrer la numerotation des axes 
         )
         axes_labels = axes.get_axis_labels(x_label="x", y_label="y")
