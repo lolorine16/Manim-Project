@@ -45,13 +45,18 @@ class complexe(Scene):
                 g1.animate.shift(UP * 2),
             ),
         )
-        self.wait(1)
+        #self.wait(1)
         
         t3 = Tex("où a et b sont des nombres réels")
-
+        #couleurs de a et b 
         t3[0][3].set_color(RED)
         t3[0][6].set_color(RED)
         self.play(Write(t3))
+        self.wait(0.8)
+
+        #bouger au milieu
+        g2 = VGroup(t2, g1, t3)
+        self.play(g2.animate.shift(DOWN * 3))
 
         self.wait(3)
 
