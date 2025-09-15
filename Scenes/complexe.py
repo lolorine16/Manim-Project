@@ -60,6 +60,27 @@ class complexe(Scene):
         self.play(g2.animate.shift(DOWN * 3))
         self.play(FadeOut(g2))
 
+        #Texte pour la forme trigo d'un nombre complexe
+        t4 = Tex("Forme Trigonometrique d'un nombre complexe se presente")
+        self.play(Write(t4), t4.animate.shift(UP * 4), run_time=1)
+
+        #Creation des axes et du cercle trigo
+        #axes
+        axes = Axes(
+            x_range=[-3, 3, 1], #[min, max, echelle] pour l'axe des abscisses 
+            y_range=[-3, 3, 1], #pareil, pour l'axes des ordonnees
+            x_length=4, #taille des axes
+            x_length=4,
+            axis_config={"include_numbers": False}, #ne pas montrer la numerotation des axes 
+        )
+        axes_labels = axes.get_axis_labels(x_label="x", y_label="y")
+
+        circle = Circle(radius=1, color=BLUE, fill_opacity=0.5) #cercle
+
+        #animation
+        self.play(Create(axes), Create(axes_labels))
+        self.play(Create(circle))
+
         self.wait(3)
 
 
