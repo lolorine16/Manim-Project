@@ -43,7 +43,6 @@ class complexe(Scene):
                 Write(formule),
                 Wait(2),
                 g1.animate.shift(UP * 2),
-                Wait(0.8),
                 FadeOut(rect),
             ),
         )
@@ -59,6 +58,7 @@ class complexe(Scene):
         #bouger au milieu
         g2 = VGroup(t2, formule, t3)
         self.play(g2.animate.shift(DOWN * 3))
+        self.play(FadeOut(g2))
 
         self.wait(3)
 
