@@ -36,13 +36,15 @@ class complexe(Scene):
 
         #encadrement et ecriture de la formule
         rect = SurroundingRectangle(formule, buff=0.5)
-        g1 = VGroup(formule, rect) #groupe pour l'animation vers le haut
+        g1 = VGroup(formule, rect) #animation vers le haut
         self.play(
             Create(rect, run_time=2),
             Succession(
                 Write(formule),
                 Wait(2),
                 g1.animate.shift(UP * 2),
+                Wait(0.8),
+                FadeOut(rect),
             ),
         )
         #self.wait(1)
@@ -55,7 +57,7 @@ class complexe(Scene):
         self.wait(0.8)
 
         #bouger au milieu
-        g2 = VGroup(t2, g1, t3)
+        g2 = VGroup(t2, formule, t3)
         self.play(g2.animate.shift(DOWN * 3))
 
         self.wait(3)
