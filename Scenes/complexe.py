@@ -14,7 +14,7 @@ class complexe(Scene):
         
         #Ecrire t1 
         self.play(Write(t1))
-        self.wait(1)
+        self.wait(0.5)
         
         #animation vers le haut(de 6 fois)
         self.play(t1.animate.shift(UP * 6), run_time=1)
@@ -41,7 +41,7 @@ class complexe(Scene):
             Create(rect, run_time=2),
             Succession(
                 Write(formule),
-                Wait(2),
+                Wait(1),
                 g1.animate.shift(UP * 2),
                 FadeOut(rect),
             ),
