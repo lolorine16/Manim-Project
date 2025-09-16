@@ -67,15 +67,15 @@ class complexe(Scene):
         #Creation des axes et du cercle trigo
         #axes
         axes = Axes(
-            x_range=[-3, 3, 1], #[min, max, echelle] pour l'axe des abscisses 
-            y_range=[-3, 3, 1], #pareil, pour l'axes des ordonnees
-            x_length=4, #taille des axes
-            y_length=4,
+            x_range=[-3, 3, 4], #[min, max, echelle] pour l'axe des abscisses 
+            y_range=[-3, 3, 4], #pareil, pour l'axes des ordonnees
+            x_length=16, #taille des axes
+            y_length=16,
             axis_config={"include_numbers": False}, #ne pas montrer la numerotation des axes 
         )
         axes_labels = axes.get_axis_labels(x_label="x", y_label="y")
 
-        circle = Circle(radius=1, color=BLUE, fill_opacity=0.5) #cercle
+        circle = Circle(radius=4, color=BLUE) #cercle
 
         #animation
         self.play(Create(axes), Create(axes_labels))
