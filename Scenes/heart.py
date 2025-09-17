@@ -58,11 +58,11 @@ class MyHeart(Scene):
         #fonction 
         h1 = ParametricFunction(
             lambda t: np.array([
-                np.sin(t) * np.cos(t) * np.log(t),
+                np.sin(t) * np.cos(t) * np.log(np.abs(t)),
                 np.abs(t)**(0.3) * np.cos(t)**(0.5),
                 0
-            ]) * 10,
-            t_range = np.array([0.001, np.pi**2])
+            ]) * 9,
+            t_range = np.array([-1, 1]) 
         )
 
         h1.set_color(RED) 
@@ -71,9 +71,9 @@ class MyHeart(Scene):
             Create(rect, run_time=2),
             Succession(
                 Wait(1.0),
-                Write(fh1),
-                Create(h1, run_time=3),
+                Write(fh1),   
             ),
+            Create(h1, run_time=3),
         )
 
         self.wait(4)
