@@ -2,10 +2,18 @@ from manim import *
 
 class MyHeart(Scene):
     def construct(self):
+        
+        t = Tex("5 ", "Heart", " Parametric Funtions", font_size=80)
+        t.set_color_by_tex('Heart', RED)
+
+        self.play(Write(t, run_time=3))
+        self.play(FadeOut(t, shift=DOWN * 2, scale=1.5))
+
+        self.wait(1)
 
         axes = Axes(
-            x_range=[-4, 4, 2],
-            y_range=[-4, 4, 2],
+            x_range=[-4, 4, 1],
+            y_range=[-4, 4, 1],
             x_length=12,
             y_length=14,
             axis_config={"tip_shape": StealthTip},
