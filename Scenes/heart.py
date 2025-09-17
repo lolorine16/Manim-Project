@@ -3,6 +3,10 @@ import numpy as np
 
 class MyHeart(Scene):
     def construct(self):
+
+        #template
+        myTemplate = TexTemplate()
+        myTemplate.add_to_preamble(r"\usepackage{mathrsfs}")
         
         #Text d'intro
         t1 = Tex("3 ", "Heart", " Parametric Funtions", font_size=80)
@@ -30,19 +34,31 @@ class MyHeart(Scene):
 
         #==========================
         #Premier Coeur 
-        
+        l1 = Tex(
+            r"$\mathscr{H} : $",
+            tex_template=myTemplate,
+            font_size=80,
+        ).shift(UP * 10, LEFT * 4)
+
         #Ecriture de la formule de l'eq para du 1er Coeur
-        f1h1 = Tex(r"$x $", r"$= \sin t \cos t \ln \lvert t \rvert $", font_size=60)
-        f2h1 = Tex(r"$ y $", r"$= \lvert t \rvert ^(0.3) (\cos t)^\frac{1}{2} $", font_size=60)
-        f1h1.set_color_by_tex('x', RED)
-        f2h1.set_color_by_tex('y', RED)
+        f1h1 = Tex(r"$x = \sin t \cos t \ln \lvert t \rvert $", font_size=60)
+        f2h1 = Tex(r"$y = \lvert t \rvert ^{0.3} (\cos t)^\frac{1}{2} $", font_size=60)
+        f1h1[0][0].set_color(RED)
+        f2h1[0][0].set_color(RED)
 
         #groupe
         fh1 = VGroup(f1h1, f2h1).arrange(DOWN, aligned_edge = LEFT, buff=0.5)
         fh1.shift(UP * 10)
 
-        self.play(Write(fh1))
-
         #rectangle pour encadrer la formule 
+        rect = SurroundingRectangle(fh1, color=RED, buff=0.5)
+        self.add(l1)
+        self.play(
+            Create(rect, run_time=2),
+            Succession(
+                Wait(1.0),
+                Write(fh1),
+            ),
+        )
 
-        self.wait()
+        self.wait(4)
