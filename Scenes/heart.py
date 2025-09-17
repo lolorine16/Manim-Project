@@ -12,10 +12,10 @@ class MyHeart(Scene):
         t1 = Tex("3 ", "Heart", " Parametric Funtions", font_size=80)
         t1.set_color_by_tex('Heart', RED) #Heart avec couleur rouge
 
-        self.play(Write(t1, run_time=3)) #ecriture de t 
-        self.play(FadeOut(t1, shift=DOWN * 2, scale=1.5)) # FadeOut
+        self.play(Write(t1, run_time=2)) #ecriture de t 
+        self.play(FadeOut(t1, run_time=1)) # FadeOut
 
-        self.wait(0.5) # attente avant l'aparition des axes
+        self.wait(0.3) # attente avant l'aparition des axes
 
         axes = Axes(
             x_range=[-4, 4, 1],
@@ -32,7 +32,8 @@ class MyHeart(Scene):
         self.play(Create(axes, run_time=2)) #creation des axes
         self.play(Write(x_label), Write(y_label)) #ecriture des labels 
 
-        #==========================
+        #====================================
+
         #Premier Coeur 
         l1 = Tex(
             r"$\mathscr{H} : $",
@@ -53,11 +54,25 @@ class MyHeart(Scene):
         #rectangle pour encadrer la formule 
         rect = SurroundingRectangle(fh1, color=RED, buff=0.5)
         self.add(l1)
+        
+        #fonction 
+        h1 = ParametricFunction(
+            lambda t: np.array([
+                np.sin(t) * np.cos(t) * np.log(t),
+                np.abs(t)**(0.3) * np.cos(t)**(0.5),
+                0
+            ]) * 10,
+            t_range = np.array([0.001, np.pi**2])
+        )
+
+        h1.set_color(RED) 
+        #animation
         self.play(
             Create(rect, run_time=2),
             Succession(
                 Wait(1.0),
                 Write(fh1),
+                Create(h1, run_time=3),
             ),
         )
 
