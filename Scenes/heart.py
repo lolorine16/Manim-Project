@@ -32,7 +32,7 @@ class MyHeart(Scene):
         self.play(Create(axes, run_time=2)) #creation des axes
         self.play(Write(x_label), Write(y_label)) #ecriture des labels 
 
-        #====================================
+        #============================================
 
         #Premier Coeur 
         l1 = Tex(
@@ -75,5 +75,55 @@ class MyHeart(Scene):
             ),
             Create(h1, run_time=3),
         )
+
+        self.wait(1)
+        self.play(FadeOut(fh1, run_time=0.5), FadeOut(rect),FadeOut(h1, run_time=0.5)) #FadeOut
+        
+        #==================================================
+
+        #Deuxieme Coeur
+
+        #Ecriture de la formule de l'eq para du 2eme Coeur
+        f1h2 = Tex(r"$x = \sin t \cos t \ln \lvert t \rvert $", font_size=60)
+        f2h2 = Tex(r"$y = \lvert t \rvert ^{0.3} (\cos t)^\frac{1}{2} $", font_size=60)
+        f1h2[0][0].set_color(RED)
+        f2h2[0][0].set_color(RED)
+
+        #groupe
+        fh2 = VGroup(f1h2, f2h2).arrange(DOWN, aligned_edge = LEFT, buff=0.5)
+        fh2.shift(UP * 10)
+
+        #rectangle pour encadrer la formule 
+        rect = SurroundingRectangle(fh2, color=RED, buff=0.5)
+        
+        #fonction 
+        h2 = ParametricFunction(
+            lambda t: np.array([
+                16*np.sin(t)**3,
+                13*np.cos(t) - 5*np.cos(t*2) - 2*np.cos(t*3) - np.cos(t*4),
+                0
+            ]) * 10,
+
+            t_range = np.array([0, TAU])
+        )
+
+        h2.set_color(RED) 
+        #animation
+        self.play(
+            Create(rect, run_time=2),
+            Succession(
+                Wait(1.0),
+                Write(fh2),   
+            ),
+            Create(h2, run_time=3),
+        )
+
+        self.wait(1)
+        self.play(FadeOut(fh2, run_time=0.5), FadeOut(rect),FadeOut(h2, run_time=0.5)) #FadeOut
+        
+        #==================================================
+
+
+
 
         self.wait(4)
