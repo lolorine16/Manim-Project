@@ -14,11 +14,11 @@ class complexe(Scene):
         
         #Ecrire t1 
         self.play(Write(t1))
-        self.wait(0.5)
+        self.wait(0.2)
         
         #animation vers le haut(de 6 fois)
         self.play(t1.animate.shift(UP * 6), run_time=1)
-        self.wait(0.5)
+        self.wait(0.2)
 
         #Ajout de la description
         t2 = Tex("C'est l'ensemble des nombres de la forme ", font_size=30).scale(2)
@@ -36,13 +36,12 @@ class complexe(Scene):
 
         #encadrement et ecriture de la formule
         rect = SurroundingRectangle(formule, buff=0.5)
-        g1 = VGroup(formule, rect) #animation vers le haut
+        g1 = VGroup(formule, rect).shift(UP * 2) #animation vers le haut
         self.play(
             Create(rect, run_time=2),
             Succession(
                 Write(formule),
                 Wait(1),
-                g1.animate.shift(UP * 2),
                 FadeOut(rect),
             ),
         )
@@ -53,7 +52,7 @@ class complexe(Scene):
         t3[0][3].set_color(RED)
         t3[0][6].set_color(RED)
         self.play(Write(t3))
-        self.wait(0.8)
+        self.wait(0.5)
 
         #bouger au milieu
         g2 = VGroup(t2, formule, t3)
@@ -61,7 +60,7 @@ class complexe(Scene):
         self.play(FadeOut(g2))
 
         #Texte pour la forme trigo d'un nombre complexe
-        t4 = Tex("Forme Trigonometrique d'un nombre complexe se presente")
+        t4 = Tex("Forme Trigonometrique d'un nombre complexe se presente", font_size=50)
         self.play(Write(t4), t4.animate.shift(UP * 4), run_time=1)
 
         #Creation des axes et du cercle trigo
@@ -69,16 +68,16 @@ class complexe(Scene):
         axes = Axes(
             x_range=[-3, 3, 4], #[min, max, echelle] pour l'axe des abscisses 
             y_range=[-3, 3, 4], #pareil, pour l'axes des ordonnees
-            x_length=16, #taille des axes
-            y_length=16,
+            x_length=12, #taille des axes
+            y_length=12,
             axis_config={"include_numbers": False}, #ne pas montrer la numerotation des axes 
-        )
+        ).shift(DOWN * 3)
         axes_labels = axes.get_axis_labels(x_label="x", y_label="y")
 
-        circle = Circle(radius=4, color=BLUE) #cercle
+        circle = Circle(radius=4, color=BLUE).shift(DOWN * 3) #cercle
 
         #animation
-        self.play(Create(axes), Create(axes_labels))
+        self.play(Create(axes), Create(axes_labels)) 
         self.play(Create(circle))
 
         self.wait(3)
