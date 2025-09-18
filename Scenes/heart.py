@@ -9,7 +9,7 @@ class MyHeart(Scene):
         myTemplate.add_to_preamble(r"\usepackage{mathrsfs}")
         
         #Text d'intro
-        t1 = Tex("3 ", "Heart", " Parametric Funtions", font_size=80)
+        t1 = Tex("3 ", "Heart", " Parametric Equations", font_size=80)
         t1.set_color_by_tex('Heart', RED) #Heart avec couleur rouge
 
         self.play(Write(t1, run_time=2)) #ecriture de t 
@@ -36,7 +36,7 @@ class MyHeart(Scene):
 
         #Premier Coeur 
         l1 = Tex(
-            r"$\mathscr{H} : $",
+            r"$\mathscr{H}1 : $",
             tex_template=myTemplate,
             font_size=80,
         ).shift(UP * 10, LEFT * 4)
@@ -53,7 +53,7 @@ class MyHeart(Scene):
 
         #rectangle pour encadrer la formule 
         rect = SurroundingRectangle(fh1, color=RED, buff=0.5)
-        self.add(l1)
+        self.play(Create(l1))
         
         #fonction 
         h1 = ParametricFunction(
@@ -73,36 +73,42 @@ class MyHeart(Scene):
                 Wait(1.0),
                 Write(fh1),   
             ),
-            Create(h1, run_time=3),
+            Create(h1, run_time=4, rate_func=linear),
         )
 
         self.wait(1)
-        self.play(FadeOut(fh1, run_time=0.5), FadeOut(rect),FadeOut(h1, run_time=0.5)) #FadeOut
+        self.play(FadeOut(fh1, run_time=0.5), FadeOut(l1),FadeOut(rect),FadeOut(h1, run_time=0.5)) #FadeOut
         
         #==================================================
 
         #Deuxieme Coeur
+        l2 = Tex(
+            r"$\mathscr{H}2 : $",
+            tex_template=myTemplate,
+            font_size=80,
+        ).shift(UP * 10, LEFT * 5)
 
         #Ecriture de la formule de l'eq para du 2eme Coeur
-        f1h2 = Tex(r"$x = \sin t \cos t \ln \lvert t \rvert $", font_size=60)
-        f2h2 = Tex(r"$y = \lvert t \rvert ^{0.3} (\cos t)^\frac{1}{2} $", font_size=60)
+        f1h2 = Tex(r"$x = 16\sin ^3 t $", font_size=60).scale(0.8)
+        f2h2 = Tex(r"$y = 13\cos t - 5\cos(2t) - 2\cos(3t) - \cos(4t)$", font_size=60).scale(0.8)
         f1h2[0][0].set_color(RED)
         f2h2[0][0].set_color(RED)
 
         #groupe
         fh2 = VGroup(f1h2, f2h2).arrange(DOWN, aligned_edge = LEFT, buff=0.5)
-        fh2.shift(UP * 10)
+        fh2.shift(UP * 10, RIGHT * 1)
 
         #rectangle pour encadrer la formule 
-        rect = SurroundingRectangle(fh2, color=RED, buff=0.5)
-        
+        rect = SurroundingRectangle(fh2, color=RED, buff=0.3)
+        self.play(Create(l2))
+
         #fonction 
         h2 = ParametricFunction(
             lambda t: np.array([
                 16*np.sin(t)**3,
                 13*np.cos(t) - 5*np.cos(t*2) - 2*np.cos(t*3) - np.cos(t*4),
                 0
-            ]) * 10,
+            ]) * 0.3,
 
             t_range = np.array([0, TAU])
         )
@@ -115,11 +121,11 @@ class MyHeart(Scene):
                 Wait(1.0),
                 Write(fh2),   
             ),
-            Create(h2, run_time=3),
+            Create(h2, run_time=4, rate_func=linear),
         )
 
         self.wait(1)
-        self.play(FadeOut(fh2, run_time=0.5), FadeOut(rect),FadeOut(h2, run_time=0.5)) #FadeOut
+        self.play(FadeOut(fh2, run_time=0.5), FadeOut(l2),FadeOut(rect),FadeOut(h2, run_time=0.5)) #FadeOut
         
         #==================================================
 
