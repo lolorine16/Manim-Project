@@ -29,7 +29,7 @@ class MyHeart(Scene):
 
         y_label.move_to(axes.c2p(0.2, 4.2)) # le y etait trop en bas donc je l'ai mis en haut 
 
-        self.play(Create(axes, run_time=2)) #creation des axes
+        self.play(Create(axes, run_time=4)) #creation des axes
         self.play(Write(x_label), Write(y_label)) #ecriture des labels 
 
         #============================================
@@ -96,7 +96,7 @@ class MyHeart(Scene):
 
         #groupe
         fh2 = VGroup(f1h2, f2h2).arrange(DOWN, aligned_edge = LEFT, buff=0.5)
-        fh2.shift(UP * 10, RIGHT * 1)
+        fh2.shift(UP * 10, RIGHT * 1.5)
 
         #rectangle pour encadrer la formule 
         rect = SurroundingRectangle(fh2, color=RED, buff=0.3)
@@ -129,7 +129,63 @@ class MyHeart(Scene):
         
         #==================================================
 
+        #Troisieme Coeur
+        l3 = Tex(
+            r"$\mathscr{H}3 : $",
+            tex_template=myTemplate,
+            font_size=80,
+        ).shift(UP * 10, LEFT * 4)
 
+        #Ecriture de la formule de l'eq para du 2eme Coeur
+        f1h3 = Tex(r"$x = -\sqrt{2} \sin^3 t $", font_size=60)
+        f2h3 = Tex(r"$y = 2\cos t - \cos^2 t - \cos^3 t$", font_size=60)
+        f1h3[0][0].set_color(RED)
+        f2h3[0][0].set_color(RED)
 
+        #groupe
+        fh3 = VGroup(f1h3, f2h3).arrange(DOWN, aligned_edge = LEFT, buff=0.5)
+        fh3.shift(UP * 10, RIGHT * 1.5)
 
-        self.wait(4)
+        #rectangle pour encadrer la formule 
+        rect = SurroundingRectangle(fh3, color=RED, buff=0.5)
+        self.play(Create(l3))
+
+        #fonction 
+        h3 = ParametricFunction(
+            lambda t: np.array([
+                np.negative(np.sqrt(2) * np.sin(t)**3),
+                2*np.cos(t) - np.cos(t)**2 - np.cos(t)**3,
+                0
+            ]) * 3,
+
+            t_range = np.array([0, TAU])
+        )
+
+        h3.set_color(RED) 
+        #animation
+        self.play(
+            Create(rect, run_time=2),
+            Succession(
+                Wait(1.0),
+                Write(fh3),   
+            ),
+            Create(h3, run_time=4, rate_func=linear),
+        )
+
+        self.wait(1)
+        self.play(FadeOut(fh3, run_time=0.5), FadeOut(l3),FadeOut(rect),FadeOut(h3, run_time=0.5)) #FadeOut
+        
+        #==================================================
+        self.wait(0.5)
+        self.play(FadeOut(axes), FadeOut(x_label), FadeOut(y_label))
+        #==================================================
+
+        #Mot de fin 
+        self.wait(0.5)
+        t2 = Tex("Thanks for watching").scale(2)
+        self.play(Create(t2))
+        self.wait(0.5)
+        self.play(FadeOut(t2))
+
+        #=====================================================
+        self.wait(2)
