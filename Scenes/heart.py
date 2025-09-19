@@ -182,7 +182,7 @@ class MyHeart(Scene):
 
         #Mot de fin 
         self.wait(0.5)
-        t2 = Tex("Thanks for watching").scale(2)
+        t2 = Tex("Thanks for watchiiiinnnngggg !!!").scale(2)
         self.play(Create(t2))
         self.wait(0.5)
         self.play(FadeOut(t2))
