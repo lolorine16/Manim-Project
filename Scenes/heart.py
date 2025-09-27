@@ -190,7 +190,7 @@ class MyHeart(Scene):
         #=====================================================
         #PROJECT FINISHH !!!!!!!
         #On Tiktok and insta @ikeda.nh10 Go follow and like !
-        #Thanks youuuu !!
+        #Thanks youuuu !!!
         #=====================================================
         
         self.wait(2)
